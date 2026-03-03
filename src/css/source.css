@@ -1,0 +1,27 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
+@import 'tailwindcss';
+
+@theme {
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 1024px;
+  --breakpoint-xl: 1280px;
+  --breakpoint-2xl: 1536px;
+  --font-nunito: 'Nunito Sans', sans-serif;
+}
+
+@layer base {
+  svg {
+    flex-shrink: 0;
+  }
+  a,
+  button {
+    cursor: pointer;
+  }
+  .clip-image {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 0 90%);
+    &:hover {
+      clip-path: none;
+    }
+  }
+}
