@@ -1,20 +1,24 @@
+const btn = document.querySelector('button') as HTMLButtonElement;
+const userDiv = document.getElementById('user') as HTMLDivElement;
+const nameDiv = document.getElementById('name') as HTMLDivElement;
+const ageDiv = document.getElementById('age') as HTMLDivElement;
+
 let subscriber: Function | null = null;
+
 const createSignal = <T>(initialValue: T): [() => T, (value: T) => void] => {
   let _value = initialValue;
-  const _subscribers = new Set<Function>();
+  const _subscriptions = new Set<Function>();
 
   const read = () => {
-    if (subscriber && !_subscribers.has(subscriber)) {
-      _subscribers.add(subscriber);
+    if (subscriber && !_subscriptions.has(subscriber)) {
+      _subscriptions.add(subscriber);
     }
     return _value;
   };
   const write = (newValue: T): void => {
     if (newValue === _value) return;
     _value = newValue;
-    for (const _sub of [..._subscribers]) {
-      (_sub: () => any) => _sub();
-    }
+    _subscriptions.forEach((cb) => cb());
   };
   return [read, write];
 };
@@ -25,36 +29,15 @@ const createEffect = (cb: Function) => {
   subscriber = null;
 };
 
-type User = {
-  username: string;
-  fullname: string;
-  age: number;
-};
+const [state, setState] = createSignal(0);
 
-const [state, setState] = createSignal<User>({
-  username: 'guest',
-  fullname: 'guest',
-  age: 30,
-});
-
-const btn = document.querySelector('button') as HTMLButtonElement;
-const userDiv = document.getElementById('user') as HTMLDivElement;
-const nameDiv = document.getElementById('name') as HTMLDivElement;
-const ageDiv = document.getElementById('age') as HTMLDivElement;
-
+createEffect(() => console.log(state()));
 createEffect(() => {
-  userDiv.innerHTML = state().username;
-  nameDiv.innerHTML = state().fullname;
-  ageDiv.innerHTML = state().age.toString();
+  userDiv.innerHTML = `${state()}`;
+  nameDiv.innerHTML = `${state() * 2}`;
+  ageDiv.innerHTML = `${state() * 10}`;
 });
 
 btn.addEventListener('click', () => {
-  setState({
-    username: 'admin',
-    fullname: 'admin',
-    age: 50,
-  });
-  console.log(state());
+  setState(state() + 1);
 });
-
-console.log(subscriber);
