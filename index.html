@@ -13,13 +13,23 @@
   <script src="dist/js/index.js" type="module"></script>
 </head>
 
-<body class="font-nunito">
-  <div class="flex p-4">
-    <div id="user" class="p-2"></div>
-    <div id="name" class="p-2"></div>
-    <div id="age" class="p-2"></div>
+<body class="font-nunito p-16">
+  <!-- this is component -->
+  <div class="flex items-center gap-2 max-md:hidden">
+    <a href="/login" class="underline underline-offset-2 decoration-2 decoration-sky-500">Log in</a>
+    <a href="/register" class="underline underline-offset-2 decoration-2 decoration-sky-500">Register</a>
   </div>
-  <button>Log IN</button>
+  <div class="flex items-center gap-2.5 md:hidden">
+    <a href="/login" class="underline underline-offset-2 decoration-2 decoration-sky-500">
+      <i class="fa-solid fa-user-lock"></i>
+    </a>
+    <a href="/register" class="underline underline-offset-2 decoration-2 decoration-sky-500">
+      <i class="fa-solid fa-user-plus"></i>
+    </a>
+  </div>
+  <!-- end component -->
+  <button class="p-8">Click me</button>
+  <div id="app"></div>
 </body>
 
 </html>
