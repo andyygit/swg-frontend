@@ -3,7 +3,7 @@ export default class Abstractview {
   setTitle(title: string): void {
     document.title = title;
   }
-  async getHtml(): Promise<string> {
-    return '';
+  async getHtml(): Promise<HTMLElement> {
+    return document.createElement('div');
   }
 }

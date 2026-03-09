@@ -1,17 +1,33 @@
-import { subscriber, createSignal, createEffect } from './helpers/Signal.js';
+import { createSignal, createEffect } from './helpers/Signal.js';
 import { router, navigateTo } from './helpers/Router.js';
 
-// const app = document.getElementById('app') as HTMLDivElement;
-// const loginBtn = document.querySelector('button') as HTMLButtonElement;
+addEventListener('popstate', router);
+addEventListener('DOMContentLoaded', () => {
+  document.body.addEventListener('click', (e) => {
+    const target = e.target as HTMLElement;
+    const closest = target.closest('a')!;
+    if (target.localName === 'a' && target.dataset.link !== undefined) {
+      e.preventDefault();
+      navigateTo((target as HTMLAnchorElement).href);
+    } else if (closest && closest.matches('[data-link]')) {
+      e.preventDefault();
+      navigateTo(closest.href);
+    }
+  });
+  router();
+});
 
-// const [state, setState] = createSignal(0);
+const app = document.getElementById('app')!;
+const loginBtn = document.querySelector('button')!;
 
-// createEffect(() => console.log(state()));
-// createEffect(() => {
-//   let out = state();
-//   app.innerHTML = `${out} -- ${out * 2} -- ${out * 10}`;
-// });
+const [state, setState] = createSignal(0);
 
-// loginBtn.addEventListener('click', () => {
-//   setState(state() + 1);
-// });
+createEffect(() => console.log(state()));
+createEffect(() => {
+  let out = state();
+  app.innerHTML = `${out} -- ${out * 2} -- ${out * 10}`;
+});
+
+loginBtn.addEventListener('click', () => {
+  setState(state() + 1);
+});
