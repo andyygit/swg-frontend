@@ -17,17 +17,23 @@ addEventListener('DOMContentLoaded', () => {
   router();
 });
 
-const app = document.getElementById('app')!;
-const loginBtn = document.querySelector('button')!;
+// const app = document.getElementById('app')!;
+// const loginBtn = document.querySelector('button')!;
 
-const [state, setState] = createSignal(0);
+// const [state, setState] = createSignal(0);
 
-createEffect(() => console.log(state()));
-createEffect(() => {
-  let out = state();
-  app.innerHTML = `${out} -- ${out * 2} -- ${out * 10}`;
-});
+// createEffect(() => console.log(state()));
+// createEffect(() => {
+//   let out = state();
+//   app.innerHTML = `${out} -- ${out * 2} -- ${out * 10}`;
+// });
 
-loginBtn.addEventListener('click', () => {
-  setState(state() + 1);
-});
+// loginBtn.addEventListener('click', () => {
+//   setState(state() + 1);
+// });
+
+const session = localStorage.getItem('session');
+
+if (!session) {
+  navigateTo('/login');
+}

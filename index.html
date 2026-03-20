@@ -14,25 +14,13 @@
 </head>
 
 <body class="font-nunito p-16">
-  <!-- this is component -->
-  <div class="flex items-center gap-2 max-md:hidden">
-    <a href="/" class="underline underline-offset-2 decoration-2 decoration-sky-500" data-link>Home</a>
-    <a href="/login" class="underline underline-offset-2 decoration-2 decoration-sky-500" data-link>Log in</a>
-    <a href="/register" class="underline underline-offset-2 decoration-2 decoration-sky-500" data-link>Register</a>
+  <div class="mb-4">
+    <ul class="flex">
+      <li class="px-2"><a data-link href="/">Home</a></li>
+      <li class="px-2"><a data-link href="/login">Login</a></li>
+      <li class="px-2"><a data-link href="/register">Register</a></li>
+    </ul>
   </div>
-  <div class="flex items-center gap-2.5 md:hidden">
-    <a href="/" class="underline underline-offset-2 decoration-2 decoration-sky-500" data-link>
-      <i class="fa-solid fa-house"></i>
-    </a>
-    <a href="/login" class="underline underline-offset-2 decoration-2 decoration-sky-500" data-link>
-      <i class="fa-solid fa-user-lock"></i>
-    </a>
-    <a href="/register" class="underline underline-offset-2 decoration-2 decoration-sky-500" data-link>
-      <i class="fa-solid fa-user-plus"></i>
-    </a>
-  </div>
-  <!-- end component -->
-  <button class="p-8">Click me</button>
   <div id="app"></div>
 </body>
 
