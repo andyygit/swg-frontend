@@ -21,6 +21,7 @@ addEventListener('DOMContentLoaded', () => {
 // const loginBtn = document.querySelector('button')!;
 
 // const [state, setState] = createSignal(0);
+// const [error, setError] = createSignal('');
 
 // createEffect(() => console.log(state()));
 // createEffect(() => {

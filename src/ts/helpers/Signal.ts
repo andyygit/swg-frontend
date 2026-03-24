@@ -18,7 +18,7 @@ const createSignal = <T>(initialValue: T): [() => T, (value: T) => void] => {
   return [read, write];
 };
 
-const createEffect = (cb: Function) => {
+const createEffect = (cb: Function): void => {
   subscriber = cb;
   cb();
   subscriber = null;
